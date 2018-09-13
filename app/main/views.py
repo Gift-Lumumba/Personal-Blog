@@ -1,10 +1,10 @@
 from flask import render_template
-from app import app
+from . import main
 # from .models import review
 # from .forms import ReviewForm
 
 # Views
-@app.route('/')
+@main.route('/')
 def index():
 
     '''

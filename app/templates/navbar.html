@@ -1,0 +1,72 @@
+
+
+<div class="navbar navbar-inverse" role="navigation" style="background-color:black; border:black;">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/"> <a href="/" class="btn btn-md buttons">
+          <span class="glyphicon glyphicon-home"></span> Home
+        </a></a>
+        &nbsp;
+        <a href="{{url_for('main.index')}}">
+          <button type="button" class="btn btn-md buttons"><span class="glyphicon glyphicon-chevron-left" > Back</span>
+          </button>
+        </a>
+      </div>
+      
+    </div>
+  </div>
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Nunito+Sans');
+    .navbar{
+      height: 50px !important;
+    }
+    
+    .buttons{
+      margin-top: 6px !important;
+      font-family: 'Nunito Sans', sans-serif;
+    }
+    .logout{
+      color: whitesmoke !important;
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 16.5px;
+    }
+    .logout:hover{
+      color: green !important;
+    }
+    .login{
+      color: whitesmoke !important;
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 16.5px;
+    }
+    .login:hover{
+      color: whitesmoke !important;
+    }
+    .profile{
+      color: whitesmoke !important;
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 16.5px;
+    }
+    .profile:hover{
+      color: green !important;
+    }
+    .buttons{
+      border: solid green !important;
+      height: 40px !important;
+      background:  black;
+      font-size: 16.5px;
+      color: whitesmoke !important;
+    }
+    .buttons:hover{
+      color: green !important;
+    }
+    .user:hover{
+      color: green !important;
+    }
+  </style>
