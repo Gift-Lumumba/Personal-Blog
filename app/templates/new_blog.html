@@ -1,2 +1,11 @@
-{% extends 'base.html'%}
-{% import "bootstrap/wtf.html" as wtf %}
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block content %}
+    <h1>Create a new blog post here:</h1>
+    <div class="container">
+        {{ wtf.quick_form(blog_form) }}
+        {{ simplemde.load }}
+    </div>
+
+{% endblock %}
