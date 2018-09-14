@@ -5,6 +5,7 @@ from .models import User,Blog,Comment
 from flask_login import login_required, current_user
 from .forms import BlogForm
 from ..email import mail_message
+import markdown2
 
 # Views
 @main.route('/')
@@ -13,30 +14,24 @@ def index():
     '''
     View root page function that returns the index page and its data
     '''
+    blogs = Blog.get_all_blogs()
+
     title = 'Home - Welcome to Personal Blog'
-    return render_template('index.html',title = title)
+    return render_template('index.html',title = title,blogs = blogs)
 
-
-@main.route('/blog/new/', methods = ['GET','POST'])
+#Admin section
+@main.route('/admin/homepage')
 @login_required
-def new_blog():
+def homepage():
 
-    form = BlogForm()
-    if category is None:
-        abort( 404 )
-
-    if form.validate_on_submit():
-        blog= form.content.data, form.category_id.data
-        # category_id = form.category_id.data
-        new_blog= Blog(blog = blog)
-    
-
-        new_pitch.save_pitch()
-        return redirect(url_for('main.index'))
-
-    return render_template('new_blog.html', new_blog_form= form, category= category)
-
-
+    '''
+    View homepage template for admin
+    '''
+    if not current_user.admin:
+        abort(403)
+        
+    return render_template('homepage.html', title = "Homepage")
+#End of admin section
 
 @main.route('/user/<uname>')
 def profile(uname):
@@ -46,6 +41,57 @@ def profile(uname):
         abort(404)
 
     return render_template("profile/profile.html",user = user)
+
+#BLOG SECTION
+
+@main.route('/blog/<int:id>', methods = ["GET", "POST"])
+def blog(id):
+    '''
+    Views route that displays a specific blog
+    '''
+    # display blog
+    blog = Blog.query.get(id)
+
+    # updating posted blog
+    if blog is None:
+        abort(404)
+    format_blog = markdown2.markdown(blog.post, extras = ["code-friendly", "fenced-code-blocks"])
+
+    # information from CommentForm
+    name = request.args.get('name')
+    email = request.args.get('email')
+    comment = request.args.get('comment')
+
+    if comment:
+        new_comment = Comment(blog_id = blog.id, name = name, email = email,comment = comment)
+
+        # Saving one's comment
+        new_comment.save_comment()
+        return redirect(url_for('.blog', id = blog.id))
+
+    # displaying users' comments
+    comments = Comment.get_comments(blog.id)
+
+    title = 'Enter your Blog'
+    return render_template('blog.html', blog = blog, title = title, comments = comments, format_blog = format_blog)
+
+#blog delete and comment section
+
+@main.route('/delete/blog/<int:id>', methods = ["GET", "POST"])
+def delete_blog(id):
+    blog = Blog.delete_blog(id)
+
+    return redirect(url_for('.index'))
+
+@main.route('/delete/comment/<int:id>', methods = ["GET", "POST"])
+def delete_comment(id):
+    comment = Comment.delete_comment(id)
+
+    return redirect(url_for('.index'))
+#end of blog delete and comment section
+#END OF BLOG SECTION
+
+
 
 # @main.route('/user/<uname>/update',methods = ['GET','POST'])
 # @login_required
