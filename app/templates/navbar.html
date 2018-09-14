@@ -1,83 +1,29 @@
-
-
-<div class="navbar navbar-inverse" role="navigation" style="background-color:black; border:black;">
+<div class="navbar navbar-inverse">
   <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/"> <a href="/" class="btn btn-md buttons">
-        <span class="glyphicon glyphicon-home"></span> Home
-      </a></a>
-      &nbsp;
-      <a href="{{url_for('main.index')}}">
-        <button type="button" class="btn btn-md buttons"><span class="glyphicon glyphicon-chevron-left" > Back</span>
-        </button>
-      </a>
-    </div>
-    <div class="navbar-collapse collapse">
-      <ul class="nav navbar-nav navbar-right">
-        {% if current_user.is_authenticated %}
-        <li><a href="{{url_for('main.profile',uname=current_user.username)}}" class="profile" style="color:black; font-weight:bolder;">Profile</a></li>
-        <li><a href="{{url_for('main.profile',uname=current_user.username)}}" class="user"style="color:whitesmoke; font-weight:bolder;"><span class="glyphicon glyphicon-user"></span> &nbsp;{{current_user.username}}</a></li>
-        <li><a href="{{url_for('auth.logout')}}" class="logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Log out</a></li>
-        {% else %}
-        <li><a href="{{url_for('auth.login')}}" class="login"><span class="glyphicon glyphicon-log-in"></span>&nbsp; Log in</a></li>
-        {% endif %}
-      </ul>
-    </div>
-    
+      <div class="navbar-header">
+          <a class="navbar-brand" href="/">GiftBlog</a>
+          <ul class="nav navbar-nav navbar-left">
+                  <li><a href="/">Home</a></li>
+          </ul>
+      </div>
+      <div class="navbar-collapse collapse">
+          
+          <ul class="nav navbar-nav navbar-right">
+              {% if current_user.is_authenticated %}
+              
+                  <li><a><i class="fa fa-user"></i> {{ current_user.username }}</a></li>
+                  {% if current_user.admin %}
+                      <li class="divider-vertical"></li>
+                      <li><a href="{{ url_for('main.homepage') }}">Homepage</a></li>
+                  {% endif %}
+                  <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+              {% else %}
+                  <li><a href="/">Home</a></li>
+                  <li><a href="{{ url_for('auth.register') }}">Register</a></li>
+                  <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+              {% endif %}
+          </ul>
+      </div>
+
   </div>
 </div>
-
-<style>
-  @import url('https://fonts.googleapis.com/css?family=Nunito+Sans');
-  .navbar{
-    height: 50px !important;
-  }
-  
-  .buttons{
-    margin-top: 6px !important;
-    font-family: 'Nunito Sans', sans-serif;
-  }
-  .logout{
-    color: whitesmoke !important;
-    font-family: 'Nunito Sans', sans-serif;
-    font-size: 16.5px;
-  }
-  .logout:hover{
-    color: green !important;
-  }
-  .login{
-    color: whitesmoke !important;
-    font-family: 'Nunito Sans', sans-serif;
-    font-size: 16.5px;
-  }
-  .login:hover{
-    color: whitesmoke !important;
-  }
-  .profile{
-    color: whitesmoke !important;
-    font-family: 'Nunito Sans', sans-serif;
-    font-size: 16.5px;
-  }
-  .profile:hover{
-    color: green !important;
-  }
-  .buttons{
-    border: solid green !important;
-    height: 40px !important;
-    background:  black;
-    font-size: 16.5px;
-    color: whitesmoke !important;
-  }
-  .buttons:hover{
-    color: green !important;
-  }
-  .user:hover{
-    color: green !important;
-  }
-</style>
