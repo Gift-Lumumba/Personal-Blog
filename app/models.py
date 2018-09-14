@@ -118,10 +118,10 @@ class Comment(db.Model):
     __tablename__ = 'comments'
 
     id = db.Column(db.Integer,primary_key = True)
-    blogs_id = db.Column(db.Integer,db.ForeignKey('blogs.id'))
-    comment=db.Column(db.String(255))
-    user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
-    username =db.Column(db.String(255))
+    name = db.Column(db.String(30),index = True)
+    email = db.Column(db.String(30),index = True)
+    blog_id = db.Column(db.Integer,db.ForeignKey('blogs.id'))
+    comment=db.Column(db.String(255),index = True)
     posted = db.Column(db.DateTime,default=datetime.utcnow)
 
     
@@ -133,12 +133,13 @@ class Comment(db.Model):
         db.session.commit()
 
     @classmethod
-    def clear_comments(cls):
-        Comment.all_comments.clear()
-
-    @classmethod
     def get_comments(cls,id):
         comments = Comment.query.filter_by(blog_id=id).all()
+
+    @classmethod
+    def delete_comment(cls, id):
+        comment = Comment.query.filter_by(id = comment_id).delete()
+        db.session.commit()
 
         return comments
 
