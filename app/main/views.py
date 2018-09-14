@@ -89,6 +89,30 @@ def delete_comment(id):
 
     return redirect(url_for('.index'))
 #end of blog delete and comment section
+
+#new blog section
+@main.route('/blog/new/<int:id>', methods = ["GET", "POST"])
+def new_blog(id):
+
+    form = BlogForm()
+    user = User.query.filter_by(id = id).first()
+    if form.validate_on_submit():
+        title = form.title.data
+        posted = form.posted.data
+
+        # creating a new blog
+        new_blog = Blog(title = title, posted = posted, user = current_user)
+
+        # saving a new blog
+        new_blog.save_blog()
+
+        mail_message('New Post', 'email/update', user.email, user = user)
+
+        return redirect(url_for('.index'))
+
+    title = 'Write a New Blog'
+    return render_template('new_blog.html', title = title, blog_form = form)
+#end of new blog section
 #END OF BLOG SECTION
 
 
