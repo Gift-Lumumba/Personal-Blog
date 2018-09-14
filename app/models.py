@@ -4,9 +4,9 @@ from . import db
 # from . import login_manager
 # from datetime import datetime
 
-@login_manager.user_loader
-def load_user(user_id):
-  return User.query.get(int(user_id))
+# @login_manager.user_loader
+# def load_user(user_id):
+#   return User.query.get(int(user_id))
 
 
 class User(db.Model):
@@ -39,3 +39,12 @@ class User(db.Model):
 
     def __repr__(self):
         return f'{self.username}'
+
+class Role(db.Model):
+    __tablename__ = 'roles'
+
+    id = db.Column(db.Integer,primary_key = True)
+    name = db.Column(db.String(255))
+
+    def __repr__(self):
+        return f'User {self.name}'
