@@ -150,15 +150,3 @@ class Update(db.Model):
 
     def __repr__(self):
         return f'Update {self.update}'
-
-
-class Delete(db.Model):
-    __tablename__ = 'delete'
-
-    id = db.Column(db.Integer,primary_key = True)
-    blog_id = db.Column(db.Integer,db.ForeignKey('blogs.id'))
-    user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
-    delete = db.Column(db.Integer,default=1)
-
-    def __repr__(self):
-        return f'Delete {self.delete}'
