@@ -14,21 +14,22 @@ def index():
     title = 'Home - Welcome to Personal Blog'
     return render_template('index.html',title = title)
 
+
 @main.route('/blog/new/', methods = ['GET','POST'])
 @login_required
-def new_blog(id):
+def new_blog():
 
-    # form = BlogForm()
-    # # if category is None:
-    # #     abort( 404 )
+    form = BlogForm()
+    if category is None:
+        abort( 404 )
 
-    # if form.validate_on_submit():
-    #     blog= form.content.data
-    #     # category_id = form.category_id.data
-    #     new_blog= (pitch= pitch)
+    if form.validate_on_submit():
+        blog= form.content.data, form.category_id.data
+        # category_id = form.category_id.data
+        new_blog= Blog(blog = blog)
     
 
-    #     new_pitch.save_pitch()
-    #     return redirect(url_for('main.index'))
+        new_pitch.save_pitch()
+        return redirect(url_for('main.index'))
 
-    # return render_template('new_pitch.html', new_pitch_form= form, category= category)
+    return render_template('new_blog.html', new_blog_form= form, category= category)
