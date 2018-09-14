@@ -57,11 +57,12 @@ class Blog(db.Model):
     __tablename__ = 'blogs'
 
     id = db.Column(db.Integer,primary_key = True)
-    blog = db.Column(db.String(255))
+    post = db.Column(db.String(), index = True)
+    title = db.Column(db.String(255),index = True)
     posted = db.Column(db.DateTime,default=datetime.utcnow)
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
     category_id = db.Column(db.Integer,db.ForeignKey('categories.id'))
-    the_comment = db.relationship('Comment', backref = 'blog', lazy = 'dynamic')
+    comments = db.relationship('Comment', backref = 'blog', lazy = 'dynamic')
     update = db.relationship('Update', backref = 'blog', lazy = 'dynamic')
     delete = db.relationship('Delete', backref = 'blog', lazy = 'dynamic')
 
@@ -85,6 +86,12 @@ class Blog(db.Model):
         Function that queries the database and returns all blogs per category passed.
         '''
         return Blog.query.filter_by(category_id = category_id)
+
+    @classmethod
+    def delete_blog(self, blog_id):
+        comments = Comment.query.filter_by(blog_id = blog_id).delete()
+        blog = Blog.query.filter_by(id = blog_id).delete()
+        db.session.commit()
 
 
 class Category(db.Model):
