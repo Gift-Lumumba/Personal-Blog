@@ -26,7 +26,7 @@
         <li><a href="{{url_for('main.profile',uname=current_user.username)}}" class="user"style="color:whitesmoke; font-weight:bolder;"><span class="glyphicon glyphicon-user"></span> &nbsp;{{current_user.username}}</a></li>
         <li><a href="{{url_for('auth.logout')}}" class="logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Log out</a></li>
         {% else %}
-        <li><a href="{{url_for('auth.login')}}" class="login"><span class="glyphicon glyphicon-log-in"></span>&nbsp; Log in</a></li>
+        <li><a href="{{url_for('auth.login')}}" class="login"><span class="glyphicon glyphicon-log-in"></span>&nbsp; Admin Log in</a></li>
         {% endif %}
       </ul>
     </div>
