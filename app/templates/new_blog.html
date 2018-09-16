@@ -1,11 +1,35 @@
-{% extends 'base.html' %}
-{% import 'bootstrap/wtf.html' as wtf %}
-
+{% extends 'base.html'%}
+{% import "bootstrap/wtf.html" as wtf %}
 {% block content %}
-    <h1>Create a new blog post here:</h1>
+<body>
     <div class="container">
-        {{ wtf.quick_form(blog_form) }}
-        {{ simplemde.load }}
+        <div class="well">
+            <div class="col-md-2"></div>
+            
+            <div class="col-md-8">
+                <br>
+                <br>
+                <br>
+                <br>
+                <div class="well">
+                    {{ wtf.quick_form(blog_form) }}
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+        
     </div>
-
-{% endblock %}
+</body>
+<style>
+    .well{
+        font-size: 15px;
+    }
+    body{
+        background: url(/static/photos/bike.jpeg);
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+</style>
+{% endblock %}  
