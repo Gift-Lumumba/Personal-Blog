@@ -1,17 +1,22 @@
 import unittest
 from app.models import User
+from app import db
 
 class UserModelTest(unittest.TestCase):
-
     def setUp(self):
-        self.new_user = User(password = 'gL0711')
+        '''
+        set up will run before every test
+        '''
+        self.new_user = User(id = 1, username = "Gift", email = "iamtesting@gift.com", password_hash = "hashed_password")
+
+    def test_instance(self):
+        '''
+        test case to check if new instance is created
+        '''
+        self.assertTrue(isinstance(self.new_user, User))
 
     def test_password_setter(self):
-        self.assertTrue(self.new_user.pass_secure is not None)
-
-    def test_no_access_password(self):
-          with self.assertRaises(AttributeError):
-              self.new_user.password
-
-    def test_password_verification(self):
-        self.assertTrue(self.new_user.verify_password('gL0711'))
+        '''
+        test to check if password is being hashed
+        '''
+        self.assertTrue(self.new_user.password_hash is not None)
