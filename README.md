@@ -1,6 +1,6 @@
 # Personal-Blog
 This application was created on 16th September 2018.
-https://giftblog.herokuapp.com/
+- https://giftblog.herokuapp.com/
 
 # Author
 Gift Lumumba
