@@ -1,4 +1,5 @@
 # Personal-Blog
+This application was created on 16th September 2018.
 https://giftblog.herokuapp.com/
 
 # Author
@@ -8,7 +9,7 @@ Gift Lumumba
 https://giftblog.herokuapp.com/
 
 ## Description
-This is a personal blogging website where that enables creation and sharing of my opinions and other application users can read and comment on them.This application was created on 16th September 2018
+This is a personal blogging website where that enables creation and sharing of my opinions and other application users can read and comment on them.
 
 
 ## Installation Requirements
