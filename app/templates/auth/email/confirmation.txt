@@ -1,0 +1,5 @@
+Dear {{ user.username }},
+Welcome to The Home of Awesome Blogs!
+To confirm your account kindly click on the following link:
+{{ url_for('auth.confirm', token=token, _external=True) }}
+Thank you!

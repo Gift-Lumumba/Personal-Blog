@@ -1,4 +1,3 @@
-Hello {{user.username}}!
-My name is Gift Lumumba. Welcome to My Personal Blog!
-I am glad you have signed up for the subscription to receive all the latest updates from me about my blogs.
-I hope you enjoy all my blog posts and remember to give feedback!Thank you.
+Hello {{user.username}}
+Welcome to The Home of Awesome Blogs.
+We have just seen you have signed up for our application and want to welcome you to the family.

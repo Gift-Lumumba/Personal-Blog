@@ -1,23 +1,24 @@
 {% extends 'base.html' %}
-{% import 'bootstrap/wtf.html' as wtf %}
-
+{% import 'bootstrap/wtf.html' as wtf%}
 {% block content %}
-<br>
-<br>
-<br>s
-
-<div class="container">
-  <div class="well more">
-      {{wtf.quick_form(form)}}
-  </div>
-</div>
+<body>
+        <div class="container">
+                <br>
+                <br>
+                <br>
+                <br>
+            <div class="well">
+                    {{wtf.quick_form(form)}}
+            </div>
+        </div> 
+</body>
 <style>
-    @import url('https://fonts.googleapis.com/css?family=Nunito+Sans');
-
-.more{
-  font-size: 16.5px;
-  font-family: 'Nunito Sans', sans-serif !important;
-  color: black;
-}
+      body{
+            background: url(/static/photos/bike.jpeg);
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
 </style>
 {% endblock %}
