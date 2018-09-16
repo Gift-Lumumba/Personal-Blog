@@ -1,18 +1,114 @@
 {% extends 'base.html' %}
 {% import 'macros.html' as macro %}
-<!-- styles block -->
-
-<!-- content block -->
 {% block content %}
-    <div class="container-fluid">
-        {{ macro.displayAllBlogs(blogs) }}
-    </div>
+<body>
+        <div class="container">  
+                <br>
+                <br>
+                <br>
+                <br>
+                <div class="jumbotron">
+                        <h2 class="head">Top Blogs From Different Categories</h2>
+                </div>
+                <br>
+                <div class="row col-sm-9 col-xs-9 col-md-8 col-lg-8">
+                    <br>
+                    <div class="thumbnail blogs">
+                        <h3><b>Inspirational Blogs</b></h3>
+                        <img src="static/photos/inspire.jpeg" alt="">
+                        <br>
+                        <p>We all have those "down days" when we feel nothing's going right; unmet </p>
+                        <p>expectations, fights with loved ones, self-doubts...you get the drift. We love this site </p>
+                        <p>because it tells you it's okay to mess up and inspires you to keep going without being </p>
+                        <p>"preachy." Instead you get real stories from real people about loving, living, giving, as </p>
+                        <p>well as work and play in daily life.</p>
+                        <br>
+                    </div>
+                    <div class="thumbnail blogs">
+                        <h3><b>Lifestyle Blogs</b></h3>
+                        <img src="static/photos/lifestyle.jpeg" alt="">
+                        <br>
+                        <p>Lifehacker is exactly about what its name implies -- it gives you hacks, tricks, and tips </p>
+                        <p>that you can actually use in everyday, ordinary situations. They cover a lot of ground, </p>
+                        <p>too, with posts on work and productivity, technology, communication, lifestyle and </p>
+                        <p>money. Case in point: on the same page you will find tips on using garden insecticides </p>
+                        <p>and an article about underwear that lets you fart with confidence in public.</p>
+                        <br>
+                    </div>
+                    <div class="thumbnail blogs">
+                        <h3><b>Inspirational Blogs</b></h3>
+                        <img src="static/photos/something.jpeg" alt="">
+                        <br>
+                        <p>The Daily Love was created with the aim of being a “place to love and be loved.” </p>
+                        <p>Sounds simple, right? But for Mastin Kipp, creator of Daily Love, this simple concept of </p>
+                        <p>having something you could relate and turn to was what kept him going when he lost </p>
+                        <p>everything he had. So he wanted to create a venue where people can share their </p>
+                        <p>stories and be inspired. The idea may be seemingly simple, but the Daily Love sure is </p>
+                        <p>doing a damn good job achieving its goal.</p>
+                        <br>
+                    </div>
+                    <div class="thumbnail blogs">
+                        <h3><b>Fitness Blogs</b></h3>
+                        <img src="static/photos/fitness.jpeg" alt="">
+                        <br>
+                        <p>Blogilates is the blog of fitness icon Cassey Ho. It's an absolute institution in the digital </p>
+                        <p>world of fitness and it's amazing how many videos, articles and how-tos you can find </p>
+                        <p>on the site. The cool thing about Cassey is that she's not focused on just one type of </p>
+                        <p>workout. She combines general fitness with Pilates, yoga and her very own style of </p>
+                        <p>burning those calories. We love it. So definitely don't miss Blogilates.com!</p>
+                        <br>
+                    </div>
+                </div>
+                <div class="row col-sm-1 col-xs-1 col-md-1 col-lg-1" ></div>
+                <div class="row col-sm-2 col-xs-2 col-md-3 col-lg-3" style="border-left: 3px black">
+                    <!-- <div class="button btn btn-success">
+                        <a href="/subscribe" class="subscribe">Subscribe Here:</a>
+                    </div> -->
+                    <br>
+                    <br>
+                    <div class="thumbnail">
+                            <h2 class="view">Posted Blogs:</h2>
+                            {{macro.displayBlog(blogs)}}
+                    </div>
+                </div>
+            </div> 
+</body>
+<style>
+        @import url('https://fonts.googleapis.com/css?family=Nunito');
+        body{
+            background: url(static/photos/bike.jpeg);
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+        .head{
+            color: black;
+            font-family: 'Nunito', sans-serif !important;
+            font-size: 40px;
+            text-align: center;
+
+        }
+        .subscribe{
+            font-family: 'Nunito', sans-serif !important;
+        }
+   
+        .blogs{
+           font-family: 'Nunito', sans-serif !important;
+           width: 620px;
+        }
+        p{
+            font-size: 15px;
+        }
+        h3{
+            text-decoration-line: underline;
+        }
+        .view{
+            text-decoration-line: underline;
+            font-family: 'Nunito', sans-serif !important;
+        }
+        .thumbnail{
+            text-align: center;
+        }
+   </style>
 {% endblock %}
-
-
-
-
-
-
-
-
