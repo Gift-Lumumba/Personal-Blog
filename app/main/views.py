@@ -105,22 +105,3 @@ def new_comment(id):
     title='Comment Section'
 
     return render_template('new_comment.html',title = title,comment_form = form)
-
-@main.route('/subscribe',methods=["GET","POST"])
-def subscribe():
-    form=SubscribeForm()
-
-    if form.validate_on_submit():
-        subscriber = Subscribe(name=form.name.data,email=form.email.data)
-
-        db.session.add(subscriber)
-        db.session.commit()
-
-        mail_message("Welcome to The Home of Awesome Blogs","email/subscribe_user",subscriber.email,subscriber=subscriber)
-        flash('A subscription confirmation has been sent to you via email')
-
-        return redirect(url_for('main.index'))
-
-        title = 'Subscribe Now'
-
-    return render_template('subscription.html',form = form)
