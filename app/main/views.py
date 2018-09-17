@@ -86,12 +86,6 @@ def see_blogs(id):
     title = 'Home of Awesome Blogs'
     return render_template('blog.html',comments = comments,title = title,blog = blog,blog_form = form,user = user)
 
-
-# @main.route('/about')
-# def about():
-#     title = 'Home Of Poetry'
-#     return render_template('about.html',title=title)
-
 @main.route('/comment/new/<int:id>',methods=['GET','POST'])
 def new_comment(id):
     blog=Blog.query.filter_by(id=id).first()
@@ -122,8 +116,8 @@ def subscribe():
         db.session.add(subscriber)
         db.session.commit()
 
-        mail_message("Welcome to The Home of Awesome Blogs","email/subscribe_user",subscriber.email,subscriber=subscriber)
-        flash('A subscription confirmation has been sent to you via email')
+        # mail_message("Welcome to The Home of Awesome Blogs","email/subscribe_user",subscriber.email,subscriber=subscriber)
+        # flash('A subscription confirmation has been sent to you via email')
 
         return redirect(url_for('main.index'))
 
