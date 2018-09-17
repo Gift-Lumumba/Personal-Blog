@@ -86,11 +86,6 @@ def see_blogs(id):
     return render_template('blog.html',comments = comments,title = title,blog = blog,blog_form = form,user = user)
 
 
-# @main.route('/about')
-# def about():
-#     title = 'Home Of Poetry'
-#     return render_template('about.html',title=title)
-
 @main.route('/comment/new/<int:id>',methods=['GET','POST'])
 def new_comment(id):
     blog=Blog.query.filter_by(id=id).first()
