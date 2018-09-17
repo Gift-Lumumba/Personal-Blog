@@ -123,4 +123,4 @@ def subscribe():
 
         title = 'Subscribe Now'
 
-    return render_template('subscription.html',subscribe_form = form)
+    return render_template('subscription.html',form = form)
