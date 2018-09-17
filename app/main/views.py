@@ -60,14 +60,14 @@ def update_pic(uname):
 @login_required
 def new_blog():
     form = BlogForm()
+    subscriber= Subscribe.query.all()
     if form.validate_on_submit():
         title=form.title.data
         post=form.post.data
         new_blog=Blog(title=title,post=post,user=current_user)
         new_blog.save_blog()
-        subscribers= Subscribe.query.all()
-        for subscriber in subscribers:
-            mail_message("New Blog Notice!!","email/blog_update",subscriber.email)
+        for subscription in subscriber:
+            mail_message("New Blog Notice!!","email/update",subscription.email,subscription =subscription)
         return redirect(url_for('main.index'))
 
     title = 'Home of Awesome Blogs'
@@ -85,6 +85,11 @@ def see_blogs(id):
     title = 'Home of Awesome Blogs'
     return render_template('blog.html',comments = comments,title = title,blog = blog,blog_form = form,user = user)
 
+
+# @main.route('/about')
+# def about():
+#     title = 'Home Of Poetry'
+#     return render_template('about.html',title=title)
 
 @main.route('/comment/new/<int:id>',methods=['GET','POST'])
 def new_comment(id):
@@ -116,11 +121,11 @@ def subscribe():
         db.session.add(subscriber)
         db.session.commit()
 
-        mail_message("Welcome to The Home of Awesome Blogs","email/subscribe_user",subscriber.email)
+        mail_message("Welcome to The Home of Awesome Blogs","email/subscribe_user",subscriber.email,subscriber=subscriber)
         flash('A subscription confirmation has been sent to you via email')
 
         return redirect(url_for('main.index'))
 
         title = 'Subscribe Now'
 
-    return render_template('subscription.html',form = form)
+    return render_template('subscription.html',subscribe_form = form)
