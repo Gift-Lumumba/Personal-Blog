@@ -60,14 +60,14 @@ def update_pic(uname):
 @login_required
 def new_blog():
     form = BlogForm()
-    subscriber= Subscribe.query.all()
     if form.validate_on_submit():
         title=form.title.data
         post=form.post.data
         new_blog=Blog(title=title,post=post,user=current_user)
         new_blog.save_blog()
-        for subscription in subscriber:
-            mail_message("New Blog Notice!!","email/update",subscription.email,subscription =subscription)
+        subscribers= Subscribe.query.all()
+        for subscriber in subscribers:
+            mail_message("New Blog Notice!!","email/blog_update",subscriber.email)
         return redirect(url_for('main.index'))
 
     title = 'Home of Awesome Blogs'

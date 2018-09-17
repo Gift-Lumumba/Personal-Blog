@@ -140,7 +140,7 @@ class Subscribe(db.Model):
     __tablename__='subscribe'
     id=db.Column(db.Integer,primary_key=True)
     name=db.Column(db.String(255))
-    email=db.Column(db.String(255))
+    email=db.Column(db.String(255),unique = True,index = True)
 
     def __init__(self,name,email):
         self.name = name

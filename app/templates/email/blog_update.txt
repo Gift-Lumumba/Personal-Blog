@@ -1,2 +1,2 @@
-Hello {{subscription.name}}
+Hello {{subscriber.name}}
 Just to update you.I have just posted a new blog.Kindly check it out and give feedback
