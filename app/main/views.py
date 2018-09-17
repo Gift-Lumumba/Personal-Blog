@@ -68,7 +68,7 @@ def new_blog():
         new_blog.save_blog()
         subscribers= Subscribe.query.all()
         for subscriber in subscribers:
-            mail_message("New Blog Notice!!","email/blog_update",subscriber.email)
+            mail_message("New Blog Notice!!","email/new_blog",subscriber.email)
         return redirect(url_for('main.index'))
 
     title = 'Home of Awesome Blogs'
