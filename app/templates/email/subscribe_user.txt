@@ -1,5 +1,0 @@
-Hello {{subscriber.name}}!
-My name is Gift Lumumba. Welcome to My Personal Blog!
-I am glad you have signed up for the subscription to receive all the latest updates from me about my blogs.
-I hope you enjoy all my blog posts and remember to give feedback!
-Thank you.
