@@ -66,7 +66,7 @@ def new_blog():
         post=form.post.data
         new_blog=Blog(title=title,post=post,user=current_user)
         new_blog.save_blog()
-        subscriber= Subscribe.query.all()
+        subscribers= Subscribe.query.all()
         for subscriber in subscribers:
             mail_message("New Blog Notice!!","email/blog_update",subscriber.email)
         return redirect(url_for('main.index'))
