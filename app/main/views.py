@@ -56,7 +56,7 @@ def update_pic(uname):
         db.session.commit()
     return redirect(url_for('main.profile',uname=uname))
 
-@main.route('/blog/new_blog',methods=['GET','POST'])
+@main.route('/blog/new',methods=['GET','POST'])
 @login_required
 def new_blog():
     form = BlogForm()
