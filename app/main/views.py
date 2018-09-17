@@ -60,19 +60,19 @@ def update_pic(uname):
 @login_required
 def new_blog():
     form = BlogForm()
-    subscriber= Subscribe.query.all()
     if form.validate_on_submit():
         title=form.title.data
         post=form.post.data
         new_blog=Blog(title=title,post=post,user=current_user)
         new_blog.save_blog()
         subscribers= Subscribe.query.all()
+        print(subscribers)
         for subscriber in subscribers:
-            mail_message("New Blog Notice!!","email/new_blog",subscriber.email)
+            print(subscriber.email)
+            # mail_message("New Blog Alert!!", "email/new_blog", subscriber.email)
+        #     mail_message("New Blog Notice!!","email/new_blog",subscriber.email, subscriber=subscriber)
         return redirect(url_for('main.index'))
-
-    title = 'Home of Awesome Blogs'
-    return render_template('new_blog.html',title = title,blog_form = form)
+    return render_template('new_blog.html',blog_form = form)
     
 @main.route('/blog/<int:id>')
 def see_blogs(id):
@@ -111,7 +111,7 @@ def subscribe():
     form=SubscribeForm()
 
     if form.validate_on_submit():
-        subscriber = Subscribe(name=form.name.data,email=form.email.data)
+        subscriber = Subscribe(email=form.email.data)
 
         db.session.add(subscriber)
         db.session.commit()

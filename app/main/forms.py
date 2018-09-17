@@ -17,6 +17,5 @@ class CommentForm(FlaskForm):
     submit = SubmitField('Submit')
 
 class SubscribeForm(FlaskForm):
-    name = StringField("Enter Your Full Name :")
     email = StringField("Enter Your Email Address :")
     submit= SubmitField('Subscribe')

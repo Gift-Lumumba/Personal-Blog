@@ -140,24 +140,7 @@ class Subscribe(db.Model):
     __tablename__='subscribe'
     id=db.Column(db.Integer,primary_key=True)
     name=db.Column(db.String(255))
-    email=db.Column(db.String(255),unique = True,index = True)
+    email=db.Column(db.String(255),unique = True,index = True, nullable=False)
 
-    def __init__(self,name,email):
-        self.name = name
-        self.email = email
-
-    def save_the_subscriber(self):
-        '''
-        Saves all subscribers
-        '''
-        db.session.add(self)
-        db.session.commit()
-
-    @classmethod
-    def get_the_subscribers(cls):
-        '''
-        Queries the database and returns all subscribers
-        '''
-        subscribers=Subscribe.query.all()
-
-        return subscribers
+    def __repr__(self):
+        return f'{self.email}'
